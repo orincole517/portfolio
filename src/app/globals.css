@@ -1,0 +1,241 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Palette — near-black canvas, violet→blue gradient, cyan for utility labels.
+   One committed theme: the site is dark, deliberately, so every surface and
+   every state was designed against this ground rather than two.
+--------------------------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+
+  --surface: #0a0a0f;
+  --surface-raised: #121219;
+  --surface-hover: #17171f;
+  --surface-sunken: #07070b;
+
+  --fg: #f3f4f8;
+  --fg-muted: #a7abbd;
+  --fg-faint: #7b8095;
+
+  --line: #1e1f2a;
+  --line-strong: #2c2e3d;
+
+  --accent: #8f7dff;
+  --accent-2: #4b8dfb;
+  --label: #34d3ee;
+  --accent-soft: rgb(124 92 255 / 0.14);
+
+  /* Display gradient — large text and rules. AA on the canvas at both ends. */
+  --gradient: linear-gradient(120deg, #7c5cff 0%, #3b82f6 100%);
+  /* Button gradient — darker, so white label text clears AA at both ends. */
+  --gradient-solid: linear-gradient(120deg, #6a45e0 0%, #2563eb 100%);
+
+  --stack-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --stack-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --stack-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-faint: var(--fg-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-label: var(--label);
+
+  --font-display: var(--stack-display);
+  --font-body: var(--stack-body);
+  --font-mono: var(--stack-mono);
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Sticky header + air, so an anchor jump never hides its own heading. */
+    scroll-padding-top: 6.5rem;
+    -webkit-text-size-adjust: 100%;
+    background-color: var(--surface);
+  }
+
+  body {
+    background-color: var(--surface);
+    color: var(--fg);
+    font-family: var(--stack-body);
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: rgb(124 92 255 / 0.35);
+    color: #fff;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--stack-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Utility voice: mono, uppercase, tracked out. */
+  .u-label {
+    font-family: var(--stack-mono);
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* The signature: violet→blue across a headline word. */
+  .u-gradient-text {
+    background-image: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Raised card. The hover lift is a border and a glow, never a transform. */
+  .u-card {
+    background-color: var(--surface-raised);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      background-color 0.25s ease;
+  }
+
+  .u-card-interactive:hover,
+  .u-card-interactive:focus-within {
+    border-color: rgb(124 92 255 / 0.5);
+    background-color: var(--surface-hover);
+    box-shadow:
+      0 0 0 1px rgb(124 92 255 / 0.12),
+      0 24px 60px -32px rgb(124 92 255 / 0.55);
+  }
+
+  /* Hairline that fades out, used under headings and beside labels. */
+  .u-rule {
+    background-image: linear-gradient(to right, var(--line-strong), transparent);
+  }
+
+  .u-prose {
+    max-width: 68ch;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--fg-muted);
+  }
+
+  .u-prose > * + * {
+    margin-top: 1.15em;
+  }
+
+  .u-prose strong {
+    color: var(--fg);
+    font-weight: 600;
+  }
+
+  .u-prose a {
+    color: var(--fg);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+
+  .u-prose a:hover {
+    color: var(--accent);
+  }
+
+  /* Ambient corner light. Static, decorative, and behind everything. */
+  .u-aurora {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .u-aurora::before,
+  .u-aurora::after {
+    content: '';
+    position: absolute;
+    width: 46rem;
+    height: 46rem;
+    border-radius: 9999px;
+    filter: blur(110px);
+    opacity: 0.75;
+  }
+
+  .u-aurora::before {
+    top: -24rem;
+    right: -12rem;
+    background: radial-gradient(circle, rgb(124 92 255 / 0.55), transparent 66%);
+  }
+
+  .u-aurora::after {
+    bottom: -30rem;
+    left: -16rem;
+    background: radial-gradient(circle, rgb(37 99 235 / 0.45), transparent 66%);
+  }
+
+  /* Gradient hairline that fades at both ends — used along a card's top edge. */
+  .u-card-edge {
+    background-image: linear-gradient(
+      to right,
+      transparent,
+      #7c5cff 25%,
+      #3b82f6 75%,
+      transparent
+    );
+  }
+}
+
+@media print {
+  .u-no-print {
+    display: none !important;
+  }
+}
