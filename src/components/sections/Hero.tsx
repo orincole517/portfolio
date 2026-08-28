@@ -14,7 +14,7 @@ const socials = [
   },
   {
     label: 'Email',
-    href: `mailto:${profile.email}`,
+    href: '#contact',
     path: 'M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11Zm2.2.5 6.8 5.1L18.8 7H5.2Z',
   },
   {
@@ -77,7 +77,7 @@ export function Hero() {
                 <ActionLink href="/work/capo" variant="primary">
                   View my work
                 </ActionLink>
-                <ActionLink href={`mailto:${profile.email}`} variant="secondary">
+                <ActionLink href="#contact" variant="secondary">
                   Get in touch
                 </ActionLink>
               </div>
@@ -87,9 +87,9 @@ export function Hero() {
                   <li key={social.label}>
                     <a
                       href={social.href}
-                      {...(social.href.startsWith('mailto:')
-                        ? {}
-                        : { target: '_blank', rel: 'noreferrer noopener' })}
+                      {...(social.href.startsWith('http')
+                        ? { target: '_blank', rel: 'noreferrer noopener' }
+                        : {})}
                       aria-label={social.label}
                       title={social.label}
                       className="border-line-strong bg-surface-raised text-fg-muted hover:border-accent hover:text-fg grid size-11 place-items-center rounded-full border transition-colors duration-200 motion-reduce:transition-none"

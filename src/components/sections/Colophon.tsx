@@ -9,7 +9,7 @@ const notes = [
   {
     label: 'Rendering',
     value:
-      'Every section is a server component. The only client components are the section nav with its progress bar, and the mobile menu.',
+      'Every section is a server component. Three things ship JavaScript: the section nav with its progress bar, the mobile menu, and the button that copies the email address.',
   },
   {
     label: 'Type',

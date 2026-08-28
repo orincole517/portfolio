@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useEffect, useId, useRef, useState } from 'react';
 import { primaryNav } from '@/content/navigation';
-import { profile } from '@/content/profile';
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -81,13 +80,13 @@ export function MobileNav() {
               </li>
             ))}
             <li>
-              <a
-                href={`mailto:${profile.email}`}
+              <Link
+                href="/#contact"
                 onClick={() => setOpen(false)}
                 className="text-accent block py-3.5 text-[0.9375rem] font-medium"
               >
                 Get in touch
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

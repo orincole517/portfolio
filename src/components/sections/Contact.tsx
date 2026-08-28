@@ -1,28 +1,20 @@
 import { Container } from '@/components/ui/Container';
+import { CopyButton } from '@/components/ui/CopyButton';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { profile } from '@/content/profile';
 
-const channels = [
-  {
-    label: 'Email',
-    value: profile.email,
-    href: `mailto:${profile.email}`,
-    description: 'The fastest way to reach me.',
-    external: false,
-  },
+const links = [
   {
     label: 'GitHub',
     value: profile.links.github.label,
     href: profile.links.github.href,
     description: profile.links.github.description,
-    external: true,
   },
   {
     label: 'Product',
     value: profile.links.product.label,
     href: profile.links.product.href,
     description: profile.links.product.description,
-    external: true,
   },
 ] as const;
 
@@ -65,25 +57,44 @@ export function Contact() {
           were hard.
         </p>
 
-        <ul className="mt-12 grid gap-4">
-          {channels.map((channel) => (
-            <li key={channel.label}>
+        {/* The address is written out, linked, and copyable. A mailto: link on
+            its own does nothing for anyone without a mail client registered. */}
+        <div className="u-card mt-12 p-6 sm:p-8">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <Eyebrow>Email</Eyebrow>
               <a
-                href={channel.href}
-                {...(channel.external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
-                className="u-card u-card-interactive group grid gap-2 p-6 sm:grid-cols-[7rem_1fr_auto] sm:items-center sm:gap-6"
+                href={`mailto:${profile.email}`}
+                className="font-display text-fg hover:text-accent mt-2 block text-2xl font-semibold tracking-[-0.015em] break-all transition-colors duration-200 motion-reduce:transition-none sm:text-3xl"
               >
-                <span className="u-label text-fg-faint">{channel.label}</span>
-                <span className="font-display text-fg group-hover:text-accent text-xl font-semibold tracking-[-0.015em] break-all transition-colors duration-200 motion-reduce:transition-none sm:text-2xl">
-                  {channel.value}
+                {profile.email}
+              </a>
+            </div>
+
+            <CopyButton value={profile.email} label="Email address" />
+          </div>
+        </div>
+
+        <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+          {links.map((link) => (
+            <li key={link.label}>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="u-card u-card-interactive group flex h-full flex-col p-6"
+              >
+                <Eyebrow>{link.label}</Eyebrow>
+                <span className="font-display text-fg group-hover:text-accent mt-2 text-xl font-semibold tracking-[-0.015em] break-all transition-colors duration-200 motion-reduce:transition-none">
+                  {link.value}
                 </span>
-                <span className="text-fg-faint flex items-center gap-4 text-[0.9375rem]">
-                  {channel.description}
+                <span className="text-fg-faint mt-3 flex items-center gap-2 text-[0.9375rem]">
+                  {link.description}
                   <span
                     aria-hidden
-                    className="hidden transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none sm:inline"
+                    className="transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
                   >
-                    →
+                    ↗
                   </span>
                 </span>
               </a>

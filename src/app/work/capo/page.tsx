@@ -103,8 +103,8 @@ export default function CapoCaseStudyPage() {
                   probably a better use of both our time than another page.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center gap-3">
-                  <ActionLink href={`mailto:${profile.email}`} variant="primary">
-                    Email me
+                  <ActionLink href="/#contact" variant="primary">
+                    Get in touch
                   </ActionLink>
                   <ActionLink href="/#work" variant="secondary">
                     Back to the work

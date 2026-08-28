@@ -37,9 +37,9 @@ needed one, and every dependency you do not add is one you never have to upgrade
 
 ## Key features
 
-- **Server-first rendering.** Two client components in the whole site: the
-  section nav and the mobile menu. Everything else is static HTML sent from the
-  server.
+- **Server-first rendering.** Three client components in the whole site: the
+  section nav, the mobile menu, and the copy-email button. Everything else is
+  static HTML sent from the server.
 - **One committed theme.** The site is dark on purpose, so every surface, state,
   and screenshot was designed against a single ground rather than two — no theme
   flash, no second palette to keep honest.
@@ -65,7 +65,7 @@ src/
 ├── components/
 │   ├── layout/             header, section nav, mobile nav, footer, skip link
 │   ├── ui/                 Container, Section, SectionHeading, Eyebrow,
-│   │                       ActionLink, Tag, SpecList, Figure
+│   │                       ActionLink, Tag, SpecList, Figure, CopyButton
 │   ├── sections/           one component per homepage band
 │   └── case-study/         Chapter, ChapterNav, ArchitectureDiagram, PullQuote
 ├── content/                all copy and data, fully typed

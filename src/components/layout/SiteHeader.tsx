@@ -27,13 +27,13 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <HeaderNav />
 
-          <a
-            href={`mailto:${profile.email}`}
+          <Link
+            href="/#contact"
             className="hidden rounded-full px-5 py-2.5 text-[0.875rem] font-medium text-white transition-opacity duration-200 hover:opacity-90 motion-reduce:transition-none sm:inline-flex"
             style={{ backgroundImage: 'var(--gradient-solid)' }}
           >
             Get in touch
-          </a>
+          </Link>
 
           <MobileNav />
         </div>
