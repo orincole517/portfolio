@@ -27,15 +27,13 @@ const mono = JetBrains_Mono({
   weight: ['400', '500'],
 });
 
-const description = `${profile.lede} ${profile.summary}`;
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: `${profile.name} — ${profile.title}`,
     template: `%s — ${profile.name}`,
   },
-  description,
+  description: profile.metaDescription,
   applicationName: `${profile.name} — Portfolio`,
   authors: [{ name: profile.name, url: siteUrl }],
   creator: profile.name,
@@ -52,14 +50,14 @@ export const metadata: Metadata = {
     type: 'profile',
     url: siteUrl,
     title: `${profile.name} — ${profile.title}`,
-    description,
+    description: profile.metaDescription,
     siteName: `${profile.name} — Portfolio`,
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
     title: `${profile.name} — ${profile.title}`,
-    description,
+    description: profile.metaDescription,
   },
   robots: {
     index: true,

@@ -12,6 +12,8 @@ export interface Profile {
   readonly status: string;
   readonly lede: string;
   readonly summary: string;
+  /** One-sentence description for page metadata and link previews. */
+  readonly metaDescription: string;
   readonly email: string;
   readonly links: {
     readonly github: ContactLink;
@@ -30,6 +32,8 @@ export const profile: Profile = {
   lede: 'I build user-facing web products in TypeScript and React.',
   summary:
     'Right now that means Capo — a Chrome extension that lets musicians change the pitch, speed, and volume of audio playing on any page. I work on it as a frontend engineer with the team at Elyra Lab: the practice interface, the controls around it, and what ships to the Chrome Web Store.',
+  metaDescription:
+    'Frontend Engineer focused on TypeScript and React, building user-facing products that are clean, intuitive, and easy to use.',
   email: 'orin.cole517@outlook.com',
   links: {
     github: {
