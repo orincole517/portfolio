@@ -10,7 +10,13 @@ export function ChapterNav() {
   const activeId = useActiveSection(ids);
 
   return (
-    <nav aria-label="Chapters" className="u-no-print sticky top-24 hidden lg:block">
+    // `self-start` is load-bearing: as a stretched grid item the nav would be as
+    // tall as the whole article, leaving sticky no room to travel, so it would
+    // scroll away with the chapters instead of staying put.
+    <nav
+      aria-label="Chapters"
+      className="u-no-print sticky top-24 hidden max-h-[calc(100vh-7rem)] self-start overflow-y-auto lg:block"
+    >
       <p className="u-label text-fg-faint mb-4">Chapters</p>
       <ol className="space-y-1">
         {chapters.map((chapter, index) => {
